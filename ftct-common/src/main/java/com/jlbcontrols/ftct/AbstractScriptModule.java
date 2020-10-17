@@ -29,7 +29,7 @@ public abstract class AbstractScriptModule implements TagEditorBlackBox {
     @ScriptFunction(docBundlePrefix = "AbstractScriptModule")
     public int updateOpcServer(
             @ScriptArg("parentPath") String parentPath,
-            @ScriptArg("opcStart") String opcServer) {  //TODO: Change this to "opcServer"
+            @ScriptArg("opcServer") String opcServer) {
 
         return updateOpcServerImpl(parentPath, opcServer);
     }
