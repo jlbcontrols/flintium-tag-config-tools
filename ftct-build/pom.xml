@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.jlbcontrols.ftct</groupId>
+        <artifactId>flintium-tag-config-tools</artifactId>
+        <version>1.10.0-beta0</version>
+    </parent>
+
+    <artifactId>ftct-build</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jlbcontrols.ftct</groupId>
+            <artifactId>ftct-gateway</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jlbcontrols.ftct</groupId>
+            <artifactId>ftct-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jlbcontrols.ftct</groupId>
+            <artifactId>ftct-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jlbcontrols.ftct</groupId>
+            <artifactId>ftct-designer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.inductiveautomation.ignitionsdk</groupId>
+                <artifactId>ignition-maven-plugin</artifactId>
+                <version>1.1.0</version>
+
+                <executions>
+                    <execution>
+                        <id>modlexecution</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>modl</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>postexecution</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>post</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <projectScopes>
+                        <projectScope>
+                            <name>ftct-client</name>
+                            <scope>C</scope>
+                        </projectScope>
+                        <projectScope>
+                            <name>ftct-common</name>
+                            <scope>CDG</scope>
+                        </projectScope>
+                        <projectScope>
+                            <name>ftct-designer</name>
+                            <scope>CD</scope>
+                        </projectScope>
+                        <projectScope>
+                            <name>ftct-gateway</name>
+                            <scope>G</scope>
+                        </projectScope>
+                    </projectScopes>
+
+                    <moduleId>com.jlbcontrols.ftct</moduleId>
+                    <moduleName>Flintium Tag Config Tools</moduleName>
+                    <moduleDescription>Convert UDTs created from PlantPAx AOI OPC drag/drop to the format used by Flintium.</moduleDescription>
+                    <moduleVersion>${project.version}</moduleVersion>
+                    <requiredIgnitionVersion>${ignition-platform-version}</requiredIgnitionVersion>
+                    <requiredFrameworkVersion>8</requiredFrameworkVersion>
+<!--                    <licenseFile>license.html</licenseFile>-->
+<!--                    <documentationFile>doc/index.html</documentationFile>-->
+                    <gatewayAddress>http://100.100.100.110:8005</gatewayAddress>
+
+                    <hooks>
+                        <hook>
+                            <scope>C</scope>
+                            <hookClass>com.jlbcontrols.ftct.client.ClientHook</hookClass>
+                        </hook>
+                        <hook>
+                            <scope>D</scope>
+                            <hookClass>com.jlbcontrols.ftct.designer.DesignerHook</hookClass>
+                        </hook>
+                        <hook>
+                            <scope>G</scope>
+                            <hookClass>com.jlbcontrols.ftct.GatewayHook</hookClass>
+                        </hook>
+                    </hooks>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
