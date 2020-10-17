@@ -14,5 +14,5 @@ Adds `system.udtHelper` jython scripting functions to Ignition to automate tag c
 * Ignition v8
 
 ## Setup  
-* Download the .modl file - navigate to [releases](./releases), click assets, then click on the .modl file.
+* Download the .modl file - navigate to [releases](../../releases), click assets, then click on the .modl file.
 * Install the module on your Ignition v8 gateway following Ignition's [module installation instructions](https://docs.inductiveautomation.com/display/DOC80/Installing+or+Upgrading+a+Module).
